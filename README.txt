@@ -2,7 +2,7 @@
 SAR - Simple Ascii Renderer
 ===========================
 
-Shared/dynamic library set of functions to render character based tiles (like Dwarf Fortress',
+Shared/dynamic library, a set of functions to render character based tiles (like Dwarf Fortress',
 by the way its tilesets (.png) should be fully compatible).
 
 Dependancies: SDL2, SDL2_image. All rights reserved.
