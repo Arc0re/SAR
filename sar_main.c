@@ -97,7 +97,7 @@ bool sar_load_texture(const char * path)
     
     if (char_tile.texture == NULL)
     {
-        printf("Failed to load texture: %s", path);
+        printf("Failed to load texture: %s\n", path);
         return false;
     }
     else
