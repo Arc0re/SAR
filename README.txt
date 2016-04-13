@@ -32,9 +32,9 @@ Functions:
 	* Rendering:
 		void sar_begin_rendering(void);
 		void sar_end_rendering(void);
-		void sar_render_tile_c(char c, int x, int y, SDL_Color bg_color, SDL_Color tile_color);
-		void sar_render_tile_char(enum ascii_characters c, int x, int y, SDL_Color bg_color, SDL_Color tile_color);
-		void sar_render_string(const char * str, int x, int y, SDL_Color bg_color, SDL_Color tile_color);
+		void sar_render_tile_c(char c, int x, int y, sar_color bg_color, sar_color tile_color);
+		void sar_render_tile_char(enum ascii_characters c, int x, int y, sar_color bg_color, sar_color tile_color);
+		void sar_render_string(const char * str, int x, int y, sar_color bg_color, sar_color tile_color);
 
 Samples: You can find one in the 'tests' folder.
 -------
