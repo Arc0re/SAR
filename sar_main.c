@@ -8,6 +8,23 @@
 
 //------------------------------------------------------------------------------
 
+struct tile
+{
+    SDL_Texture * texture;
+    SDL_Rect src; // part of the texture
+    SDL_Rect dest; // rendering target, can do scaling
+    int w;
+    int h;
+};
+
+struct char_data
+{
+    int x;
+    int y;  
+};
+
+//------------------------------------------------------------------------------
+
 static SDL_Window * window = NULL;
 static SDL_Renderer * renderer = NULL;
 static int tile_width;

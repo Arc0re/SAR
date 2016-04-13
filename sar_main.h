@@ -16,7 +16,7 @@
 // Enumerations
 //------------------------------------------------------------------------------
 
-// ASCII CP437 255 charACTERS
+// ASCII CP437 characters (255)
 enum ascii_characters
 {
 	char_null = 0,
@@ -281,21 +281,6 @@ enum ascii_characters
 // Types
 //------------------------------------------------------------------------------
 
-struct tile
-{
-    SDL_Texture * texture;
-    SDL_Rect src; // part of the texture
-    SDL_Rect dest; // rendering target, can do scaling
-    int w;
-    int h;
-};
-
-struct char_data
-{
-    int x;
-    int y;  
-};
-
 typedef SDL_Event sar_event;
 typedef SDL_Color sar_color;
 
@@ -324,8 +309,8 @@ void sar_get_events(sar_event * ev);
 
 void sar_begin_rendering(void);
 void sar_end_rendering(void);
-void sar_render_tile_c(char c, int x, int y, SDL_Color bg_color, SDL_Color tile_color);
-void sar_render_tile_char(enum ascii_characters c, int x, int y, SDL_Color bg_color, SDL_Color tile_color);
-void sar_render_string(const char * str, int x, int y, SDL_Color bg_color, SDL_Color tile_color);
+void sar_render_tile_c(char c, int x, int y, sar_color bg_color, sar_color tile_color);
+void sar_render_tile_char(enum ascii_characters c, int x, int y, sar_color bg_color, sar_color tile_color);
+void sar_render_string(const char * str, int x, int y, sar_color bg_color, sar_color tile_color);
 
 #endif // __SAR_MAIN__
