@@ -1,5 +1,6 @@
 # Makefile for the SAR (Simple Ascii Renderer) library
 # deps: SDL2, SDL2_image
+# Arc0re -- https://github.com/Arc0re/SAR/ -- 2016
 
 CC:=gcc-5 -std=c11
 CFLAGS:=-c -Wall -Wextra -Wstrict-prototypes -Wmissing-prototypes
