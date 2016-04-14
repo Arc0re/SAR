@@ -4,8 +4,8 @@
 // Arc0re -- https://github.com/Arc0re/SAR/ -- 2016
 //------------------------------------------------------------------------------
 
-#ifndef __SAR_MAIN__
-#define __SAR_MAIN__
+#ifndef __SAR__
+#define __SAR__
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -313,4 +313,4 @@ void sar_render_tile_c(char c, int x, int y, sar_color bg_color, sar_color tile_
 void sar_render_tile_char(enum ascii_characters c, int x, int y, sar_color bg_color, sar_color tile_color);
 void sar_render_string(const char * str, int x, int y, sar_color bg_color, sar_color tile_color);
 
-#endif // __SAR_MAIN__
+#endif // __SAR__
