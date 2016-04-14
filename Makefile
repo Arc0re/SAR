@@ -3,7 +3,7 @@
 # Arc0re -- https://github.com/Arc0re/SAR/ -- 2016
 
 CC:=gcc-5 -std=c11
-CFLAGS:=-c -Wall -Wextra -Wstrict-prototypes -Wmissing-prototypes
+CFLAGS:=-c -O3 -Wall -Wextra -Wstrict-prototypes -Wmissing-prototypes
 INCLUDES:=-I/usr/local/include/
 LDFLAGS:=-L/usr/local/Cellar/sdl2/2.0.4/lib -L/usr/local/Cellar/sdl2_image/2.0.0_1/lib
 LDLIBS:=-lSDL2 -lSDL2_image
