@@ -1,4 +1,4 @@
-#include "../sar_main.h"
+#include "../sar.h"
 
 int main(int argc, char * argv[])
 {
