@@ -27,9 +27,11 @@ struct char_data
 
 static SDL_Window * window = NULL;
 static SDL_Renderer * renderer = NULL;
-static int tile_width;
-static int tile_height;
 static struct tile char_tile;
+
+// Globals
+int tile_width = 0;
+int tile_height = 0;
 
 //------------------------------------------------------------------------------
 
