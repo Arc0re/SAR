@@ -132,12 +132,11 @@ int sar_get_events(sar_event * event)
 
 //------------------------------------------------------------------------------
 
-void sar_begin_rendering(void)
+void sar_begin_rendering(sar_color clear_color)
 {
     SDL_RenderClear(renderer);
     
-    // Set screen to black
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, clear_color.r, clear_color.g, clear_color.b, clear_color.a);
 }
 
 //------------------------------------------------------------------------------

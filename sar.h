@@ -333,7 +333,7 @@ int sar_get_events(sar_event * event);
 // Rendering
 //------------------------------------------------------------------------------
 
-void sar_begin_rendering(void);
+void sar_begin_rendering(sar_color clear_color);
 void sar_end_rendering(void);
 void sar_render_tile_c(char c, int x, int y, sar_color bg_color, sar_color tile_color);
 void sar_render_tile_char(enum ascii_characters c, int x, int y, sar_color bg_color, sar_color tile_color);
