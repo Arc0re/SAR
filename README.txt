@@ -7,6 +7,8 @@ by the way its tilesets (.png) should be fully compatible).
 
 ** THE .PNG FILE IN THE TESTS/ FOLDER IS FULLY USABLE. ALSO LOOK FOR ANY DWARF FORTRESS TILESET .PNG **
 
+** THIS IS MOSTLY OLD MESSY CODE, RIPPED OFF A GAME I WAS MAKING. DON'T EXPECT IT TO LOOK GOOD, IT JUST WORKS. **
+
 Dependancies: SDL2, SDL2_image. All rights reserved.
 ------------
 
