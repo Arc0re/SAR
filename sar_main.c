@@ -111,9 +111,9 @@ bool sar_load_texture(const char * path)
 
 //------------------------------------------------------------------------------
 
-void sar_get_events(sar_event * ev)
+int sar_get_events(sar_event * event)
 {
-    SDL_PollEvent(ev);
+    return SDL_PollEvent(event);
 }
 
 //------------------------------------------------------------------------------

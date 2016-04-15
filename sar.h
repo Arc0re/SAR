@@ -312,7 +312,7 @@ bool sar_load_texture(const char * path);
 // Events handling
 //------------------------------------------------------------------------------
 
-void sar_get_events(sar_event * ev);
+int sar_get_events(sar_event * event);
 
 //------------------------------------------------------------------------------
 // Rendering
