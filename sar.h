@@ -42,6 +42,7 @@ extern int tile_height;
 //------------------------------------------------------------------------------
 
 // ASCII CP437 characters (255)
+// Adapted from https://gist.github.com/inmatarian/ef2bce24301f53349c7e (Thanks a lot!)
 enum ascii_characters
 {
 	char_null = 0,
