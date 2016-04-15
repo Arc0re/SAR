@@ -27,7 +27,7 @@ Functions:
 		bool sar_load_texture(const char * path);
 	
 	* Events handling:
-		void sar_get_events(sar_event * ev);
+		int sar_get_events(sar_event * event);
 		
 	* Rendering:
 		void sar_begin_rendering(void);
@@ -43,6 +43,10 @@ To do:
 -----
 	- Windows build
 	- Linux build
-	- Static library
+	- Static library (?)
 
-Author: Arc0re (paperboycheero@yahoo.com)
+License:
+-------
+	zlib (http://www.gzip.org/zlib/zlib_license.html)
+
+Author: Thomas "Arc0re" Guyot <thomasguyot@outlook.com> <paperboycheero@yahoo.com>
