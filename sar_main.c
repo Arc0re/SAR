@@ -22,20 +22,20 @@
 
 //------------------------------------------------------------------------------
 
-struct tile
+typedef struct tile
 {
     SDL_Texture * texture;
     SDL_Rect src; // part of the texture
     SDL_Rect dest; // rendering target, can do scaling
     int w;
     int h;
-};
+} tile;
 
-struct char_data
+typedef struct char_data
 {
     int x;
     int y;  
-};
+} char_data;
 
 //------------------------------------------------------------------------------
 
@@ -44,24 +44,16 @@ static SDL_Renderer * renderer = NULL;
 static struct tile char_tile;
 
 // Globals
-int tile_width = 0;
-int tile_height = 0;
+int SAR_TILE_WIDTH = 0;
+int SAR_TILE_HEIGHT = 0;
 
 //------------------------------------------------------------------------------
 
-static struct char_data sar_get_ascii_c(char c)
+static char_data sar_get_ascii(long c)
 {
-    struct char_data chr;
-    chr.x = c % 16; chr.x = chr.x * tile_width;
-    chr.y = c / 16; chr.y = chr.y * tile_height;
-    return chr;
-}
-
-static struct char_data sar_get_ascii_char(enum ascii_characters c)
-{
-    struct char_data chr;
-    chr.x = c % 16; chr.x = chr.x * tile_width;
-    chr.y = c / 16; chr.y = chr.y * tile_height;
+    char_data chr;
+    chr.x = c % 16; chr.x = chr.x * SAR_TILE_WIDTH;
+    chr.y = c / 16; chr.y = chr.y * SAR_TILE_HEIGHT;
     return chr;
 }
 
@@ -148,9 +140,9 @@ void sar_end_rendering(void)
 
 //------------------------------------------------------------------------------
 
-void sar_render_tile_c(char c, int x, int y, sar_color bg_color, sar_color tile_color)
+void sar_render_tile(long c, int x, int y, sar_color bg_color, sar_color tile_color)
 {
-    struct char_data chars;
+    char_data chars;
     
     if (char_tile.texture == NULL)
     {
@@ -159,82 +151,31 @@ void sar_render_tile_c(char c, int x, int y, sar_color bg_color, sar_color tile_
     }
     
     SDL_QueryTexture(char_tile.texture, NULL, NULL, &char_tile.w, &char_tile.h);
-    tile_width = char_tile.w / 16;
-    tile_height = char_tile.h / 16;
+    SAR_TILE_WIDTH = char_tile.w / 16;
+    SAR_TILE_HEIGHT = char_tile.h / 16;
     
     // Position of the block tile
     SDL_Rect bg =
     {
-        tile_width * 11,
-        tile_height * 13,
-        tile_width,
-        tile_height
+        SAR_TILE_WIDTH * 11,
+        SAR_TILE_HEIGHT * 13,
+        SAR_TILE_WIDTH,
+        SAR_TILE_HEIGHT
     };
     
-    chars = sar_get_ascii_c(c);
+    chars = sar_get_ascii(c);
     
     // Which part of the texture is gonna be rendered
     char_tile.src.x = chars.x;
     char_tile.src.y = chars.y;
-    char_tile.src.w = tile_width;
-    char_tile.src.h = tile_height;
+    char_tile.src.w = SAR_TILE_WIDTH;
+    char_tile.src.h = SAR_TILE_HEIGHT;
 
     // Where its gonna be rendered
     char_tile.dest.x = x;
     char_tile.dest.y = y;
-    char_tile.dest.w = tile_width;
-    char_tile.dest.h = tile_height;
-    
-    // Background tile color
-    SDL_SetTextureColorMod(char_tile.texture, bg_color.r, bg_color.g,
-        bg_color.b);
-        
-    SDL_RenderCopy(renderer, char_tile.texture, &bg, &char_tile.dest);
-    
-    // Character (foreground) color
-    SDL_SetTextureColorMod(char_tile.texture, tile_color.r, tile_color.g,
-        tile_color.b);
-        
-    SDL_RenderCopy(renderer, char_tile.texture, &char_tile.src,
-        &char_tile.dest);
-}
-
-void sar_render_tile_char(enum ascii_characters c, int x, int y, sar_color bg_color, sar_color tile_color)
-{
-        struct char_data chars;
-    
-    if (char_tile.texture == NULL)
-    {
-        puts("You must load the texture png BEFORE trying to render anything.");
-        exit(-1);
-    }
-    
-    SDL_QueryTexture(char_tile.texture, NULL, NULL, &char_tile.w, &char_tile.h);
-    tile_width = char_tile.w / 16;
-    tile_height = char_tile.h / 16;
-    
-    // Position of the block tile
-    SDL_Rect bg =
-    {
-        tile_width * 11,
-        tile_height * 13,
-        tile_width,
-        tile_height
-    };
-    
-    chars = sar_get_ascii_char(c);
-    
-    // Which part of the texture is gonna be rendered
-    char_tile.src.x = chars.x;
-    char_tile.src.y = chars.y;
-    char_tile.src.w = tile_width;
-    char_tile.src.h = tile_height;
-
-    // Where its gonna be rendered
-    char_tile.dest.x = x;
-    char_tile.dest.y = y;
-    char_tile.dest.w = tile_width;
-    char_tile.dest.h = tile_height;
+    char_tile.dest.w = SAR_TILE_WIDTH;
+    char_tile.dest.h = SAR_TILE_HEIGHT;
     
     // Background tile color
     SDL_SetTextureColorMod(char_tile.texture, bg_color.r, bg_color.g,
@@ -258,7 +199,7 @@ void sar_render_string(const char * str, int x, int y, sar_color bg_color, sar_c
     
     for (int i = 0; i < len; i++)
     {
-        sar_render_tile_c(str[i], x + tile_width * i, y, bg_color, tile_color);
+        sar_render_tile(str[i], x + SAR_TILE_WIDTH * i, y, bg_color, tile_color);
     }
 }
 

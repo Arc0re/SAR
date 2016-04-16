@@ -1,4 +1,5 @@
 #include "../sar.h"
+#include <iostream>
 
 int main(int argc, char * argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char * argv[])
     
     sar_load_texture("curses_640x300ALPHA.png");
     
+    long g = 128;
     while (1)
     {
         sar_get_events(&event);
@@ -20,13 +22,22 @@ int main(int argc, char * argv[])
         if (event.type == SDL_QUIT)
             break;
         
-        sar_begin_rendering();
-        sar_render_string("It works", 100, 200, white, green);
-        sar_render_tile_c('!', 0, 10, red, blue);
-        sar_render_tile_char(char_infinity, 0, 20, green, white);
+        sar_begin_rendering(blue);
+
+        for (int i=99;i<255;i++)
+        {
+            sar_render_tile(i, (i-98)*SAR_TILE_WIDTH, 0, white, green);
+        }
+
+        sar_render_tile(128, 40, 20, blue, red);
+        sar_render_string("Hellooooo 03483", 200, 100, black, white);
+        sar_render_tile(g, 215, 200, black, white);
+        
         sar_end_rendering();
     }
     
+    
     sar_close();
+    std::cout << "c++ test" << std::endl;
     return 0;
 }
