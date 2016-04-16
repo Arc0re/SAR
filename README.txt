@@ -36,8 +36,7 @@ Functions:
 	* Rendering:
 		void sar_begin_rendering(sar_color clear_color)
 		void sar_end_rendering(void);
-		void sar_render_tile_c(char c, int x, int y, sar_color bg_color, sar_color tile_color);
-		void sar_render_tile_char(enum ascii_characters c, int x, int y, sar_color bg_color, sar_color tile_color);
+		void sar_render_tile(long c, int x, int y, sar_color bg_color, sar_color tile_color);
 		void sar_render_string(const char * str, int x, int y, sar_color bg_color, sar_color tile_color);
 
 Samples: You can find one in the 'tests' folder.
