@@ -314,7 +314,7 @@ typedef SDL_Color sar_color;
 // Initialization and shutdown
 //------------------------------------------------------------------------------
 
-bool sar_init(const char * caption, int w, int h);
+bool sar_init(const char * caption, int w, int h, bool resizable);
 void sar_close(void);
 
 //------------------------------------------------------------------------------
@@ -336,7 +336,7 @@ int sar_get_events(sar_event * event);
 void sar_begin_rendering(sar_color clear_color);
 void sar_end_rendering(void);
 void sar_render_tile(long c, int x, int y, sar_color bg_color, sar_color tile_color);
-void sar_render_string(const char * str, int x, int y, sar_color bg_color, sar_color tile_color);
+void sar_render_str(const char * str, int x, int y, sar_color bg_color, sar_color tile_color);
 
 #ifdef __cplusplus
 }

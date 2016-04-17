@@ -9,7 +9,7 @@ int main(int argc, char * argv[])
     sar_color green = { 0, 255, 0 };
     sar_color red = { 255, 0, 0 };
     
-    sar_init("test window", 800, 600);
+    sar_init("test window", 800, 600, true);
     
     sar_load_texture("curses_640x300ALPHA.png");
     
@@ -29,7 +29,7 @@ int main(int argc, char * argv[])
         }
 
         sar_render_tile(128, 40, 20, blue, red);
-        sar_render_string("Hellooooo 03483", 200, 100, black, white);
+        sar_render_str("Hellooooo 03483", 200, 100, black, white);
         sar_render_tile(g, 215, 200, black, white);
         
         sar_end_rendering();

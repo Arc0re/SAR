@@ -41,7 +41,7 @@ typedef struct char_data
 
 static SDL_Window * window = NULL;
 static SDL_Renderer * renderer = NULL;
-static struct tile char_tile;
+static tile char_tile;
 
 // Globals
 int SAR_TILE_WIDTH = 0;
@@ -59,14 +59,19 @@ static char_data sar_get_ascii(long c)
 
 //------------------------------------------------------------------------------
 
-bool sar_init(const char * caption, int w, int h)
+bool sar_init(const char * caption, int w, int h, bool resizable)
 {
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
     
-    window = SDL_CreateWindow(caption,
-                            SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                            w, h, SDL_WINDOW_SHOWN);
+    if (resizable)
+    {
+        window = SDL_CreateWindow(caption, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, SDL_WINDOW_RESIZABLE);
+    }
+    else
+    {
+        window = SDL_CreateWindow(caption, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, SDL_WINDOW_SHOWN);
+    }
     
     if (window == NULL)
     {
@@ -82,7 +87,7 @@ bool sar_init(const char * caption, int w, int h)
         return false;
     }
     
-    puts("Successfully initialized SAR.");
+    printf("Successfully initialized SAR.\n");
     return true;
 }
 
@@ -94,7 +99,7 @@ void sar_close(void)
     SDL_DestroyWindow(window);
     IMG_Quit();
     SDL_Quit();
-    puts("Successfully closed SAR.");
+    printf("Successfully closed SAR.\n");
 }
 
 //------------------------------------------------------------------------------
@@ -111,6 +116,11 @@ bool sar_load_texture(const char * path)
     else
     {
         printf("Texture %s loaded.\n", path);
+        
+        // Load tileset info
+        SDL_QueryTexture(char_tile.texture, NULL, NULL, &char_tile.w, &char_tile.h);
+        SAR_TILE_WIDTH = char_tile.w / 16;  
+        SAR_TILE_HEIGHT = char_tile.h / 16;
         return true;
     }
 }
@@ -146,13 +156,9 @@ void sar_render_tile(long c, int x, int y, sar_color bg_color, sar_color tile_co
     
     if (char_tile.texture == NULL)
     {
-        puts("You must load the texture png BEFORE trying to render anything.");
+        printf("You must load the texture png BEFORE trying to render anything.\n");
         exit(-1);
     }
-    
-    SDL_QueryTexture(char_tile.texture, NULL, NULL, &char_tile.w, &char_tile.h);
-    SAR_TILE_WIDTH = char_tile.w / 16;
-    SAR_TILE_HEIGHT = char_tile.h / 16;
     
     // Position of the block tile
     SDL_Rect bg =
@@ -178,22 +184,19 @@ void sar_render_tile(long c, int x, int y, sar_color bg_color, sar_color tile_co
     char_tile.dest.h = SAR_TILE_HEIGHT;
     
     // Background tile color
-    SDL_SetTextureColorMod(char_tile.texture, bg_color.r, bg_color.g,
-        bg_color.b);
+    SDL_SetTextureColorMod(char_tile.texture, bg_color.r, bg_color.g, bg_color.b);
         
     SDL_RenderCopy(renderer, char_tile.texture, &bg, &char_tile.dest);
     
     // Character (foreground) color
-    SDL_SetTextureColorMod(char_tile.texture, tile_color.r, tile_color.g,
-        tile_color.b);
+    SDL_SetTextureColorMod(char_tile.texture, tile_color.r, tile_color.g, tile_color.b);
         
-    SDL_RenderCopy(renderer, char_tile.texture, &char_tile.src,
-        &char_tile.dest);
+    SDL_RenderCopy(renderer, char_tile.texture, &char_tile.src, &char_tile.dest);
 }
 
 //------------------------------------------------------------------------------
 
-void sar_render_string(const char * str, int x, int y, sar_color bg_color, sar_color tile_color)
+void sar_render_str(const char * str, int x, int y, sar_color bg_color, sar_color tile_color)
 {
     int len = strlen(str);
     
