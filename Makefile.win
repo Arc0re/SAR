@@ -1,0 +1,24 @@
+# Makefile for the SAR (Simple Ascii Renderer) library
+# deps: SDL2, SDL2_image
+# Arc0re -- https://github.com/Arc0re/SAR/ -- 2016
+
+# FOR WINDOWS - MinGW
+
+CC:=gcc
+CFLAGS:=-c -std=c11 -Wall -Wextra -Wstrict-prototypes -Wmissing-prototypes #-O3
+INC:=-IC:\libs\SDL2\include -IC:\libs\SDL2_image\i686-w64-mingw32\include\SDL2
+LDFLAGS:=-LC:\libs\SDL2-32bits-MinGW\lib -LC:\libs\SDL2_image\i686-w64-mingw32\lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
+LIBS:=-LC:\libs\SDL2\lib\x86 -lSDL2main -lSDL2 -LC:\libs\SDL2_image\i686-w64-mingw32\lib -lSDL2_image
+SRC:=$(wildcard *.c)
+OBJ:=$(notdir $(SRC:.c=.o))
+DLL:=sar.dll
+
+all:
+	$(CC) $(CFLAGS) $(INC) -DBUILD_DLL $(SRC)
+	$(CC) -shared -o $(DLL) $(OBJ) $(LDFLAGS) #-Wl,--out-implib,libsar.a
+
+ming:
+	$(CC) $(CFLAGS) $(SRC) $(INC) $(LIBS) -DBUILD_DLL -shared -o $(DLL)
+
+clean:
+	rm -rf *.dll *.o *.a

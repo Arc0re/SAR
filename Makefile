@@ -15,11 +15,11 @@ $(SHARED_LIB): $(OBJ)
 	@echo "\nLinking. . .\n"
 	$(CC) $(LDFLAGS) $(LDLIBS) -shared -o $@ $^
 	@echo "\nLinking for target $(SHARED_LIB) succeeded!\n\n"
-	
+
 %.o: %.c
 	@echo "\nCompiling:"
 	$(CC) $(CFLAGS) $(INCLUDES) -fPIC -o $@ $<
-	
+
 .PHONY: clean
 clean:
 	-rm $(OBJ) $(SHARED_LIB)

@@ -18,13 +18,32 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
+
 #ifndef __SAR__
 #define __SAR__
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#ifdef _WIN32
+# include <SDL.h>
+# include <SDL_image.h>
+#else
+# include <SDL2/SDL.h>
+# include <SDL2/SDL_image.h>
+#endif
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <stdbool.h>
+
+#ifndef DECLSPEC
+# ifdef _WIN32
+#  ifdef BUILD_DLL
+#   define DECLSPEC __declspec(dllimport)
+#  else
+#   define DECLSPEC __declspec(dllexport)
+#  endif
+# endif
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -314,29 +333,29 @@ typedef SDL_Color sar_color;
 // Initialization and shutdown
 //------------------------------------------------------------------------------
 
-bool sar_init(const char * caption, int w, int h, bool resizable);
-void sar_close(void);
+DECLSPEC bool sar_init(const char * caption, int w, int h, bool resizable);
+DECLSPEC void sar_close(void);
 
 //------------------------------------------------------------------------------
 // Image/file loading
 //------------------------------------------------------------------------------
 
-bool sar_load_texture(const char * path);
+DECLSPEC bool sar_load_texture(const char * path);
 
 //------------------------------------------------------------------------------
 // Events handling
 //------------------------------------------------------------------------------
 
-int sar_get_events(sar_event * event);
+DECLSPEC int sar_get_events(sar_event * event);
 
 //------------------------------------------------------------------------------
 // Rendering
 //------------------------------------------------------------------------------
 
-void sar_begin_rendering(sar_color clear_color);
-void sar_end_rendering(void);
-void sar_render_tile(long c, int x, int y, sar_color bg_color, sar_color tile_color);
-void sar_render_str(const char * str, int x, int y, sar_color bg_color, sar_color tile_color);
+DECLSPEC void sar_begin_rendering(sar_color clear_color);
+DECLSPEC void sar_end_rendering(void);
+DECLSPEC void sar_render_tile(long c, int x, int y, sar_color bg_color, sar_color tile_color);
+DECLSPEC void sar_render_str(const char * str, int x, int y, sar_color bg_color, sar_color tile_color);
 
 #ifdef __cplusplus
 }
