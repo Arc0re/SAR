@@ -39,14 +39,13 @@ Functions:
 		void sar_render_tile(long c, int x, int y, sar_color bg_color, sar_color tile_color);
 		void sar_render_str(const char * str, int x, int y, sar_color bg_color, sar_color tile_color);
 
-Samples: You can find one in the 'tests' folder.
+Samples: You can find some in the 'tests' folder.
 -------
 
 To do:
 -----
-	- Windows build
+	- Windows build (MinGW 32b done)
 	- Linux build
-	- Static library (?)
 
 License:
 -------
