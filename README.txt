@@ -5,6 +5,9 @@ SAR - Simple Ascii Renderer
 Shared/dynamic library, a set of functions to render character based tiles (like Dwarf Fortress',
 by the way its tilesets (.png) should be fully compatible).
 
+You will need the SDL2 on your system to use that. (You need the SDL.dll, SDL_image.dll, and to link against the static library
+SDL_main. You will also need the SDL headers, of course.
+
 ** THE .PNG FILE IN THE TESTS/ FOLDER IS FULLY USABLE. ALSO LOOK FOR ANY DWARF FORTRESS TILESET .PNG **
 
 ** THIS IS MOSTLY OLD MESSY CODE, RIPPED OFF A GAME I WAS MAKING. DON'T EXPECT IT TO LOOK GOOD, IT JUST WORKS. **
